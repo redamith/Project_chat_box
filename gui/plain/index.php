@@ -58,9 +58,9 @@
         right:170px;
         bottom:0px;
         
-        min-width: 400px;
         
-        min-height: 150px;
+        
+        min-width: 150px;
         max-height: 500px;
         overflow: auto;
         border: 3px inset #666;
@@ -104,7 +104,7 @@
       .shut{
         float: center;
       }
-      a{text-decoration:none;font-size: 100%;}
+      a{text-decoration:none;font-size: 100%;color:#8db654 }
       a:hover{
         color:#2c3e51;
       }
@@ -116,30 +116,33 @@
 ?>
     <body onload = "">
     <iframe src="http://www.grabon.in/" height="775" width="99%"></iframe>
-    <div id = "wrapper">
-    <div id = "top">
-      <p class = "shut">
-        Hello! I'm <a id = "exit" href = "index.php" onclick ="myfunction({window.location = 'index.php';})">Param</a>
-      </p>
-    </div>
-    <div style="clear: both"></div>
-    <hr>
-    <div id="responses">
-       <?php echo $display ?>
-    </div>
-  <form name="chatform" method="post" action="index.php?login=true#end" onsubmit="if(document.getElementById('say').value == '') return false;">
-      <div id="input">
-        <label for="say"></label>
+    <div id = "wrapper" style="">
+      <div id = "top">
+        <p class = "shut" style="text-align:center;color:white">
+          Talk to <a id = "exit" href = "index.php"onclick ="myfunction({window.location = 'index.php';}) " style="color: #2c3e51">Param</a>!
+        </p>
         <hr>
-        <input type="text" name="say" id="say" size = "50%"/>
-        <input type="submit" name="submit" id="btn_say" value="send" />
-        <input type="hidden" name="convo_id" id="convo_id" value="<?php echo $convo_id;?>" />
-        <input type="hidden" name="bot_id" id="bot_id" value="<?php echo $bot_id;?>" />
-        <input type="hidden" name="format" id="format" value="<?php echo $format;?>" />
-      </div>
-    </form>
-    </div>
+       </div>
     
+    <div id = "frame2" style = "">
+    <div id="responses" style="">
+        
+       <?php echo $display ?>
+      </div>
+      <form name="chatform" method="post" action="index.php?login=true#end" onsubmit="if(document.getElementById('say').value == '') return false;">
+          <div id="input" style="">
+          <label for="say"></label>
+         <hr>
+         <input type="text" name="say" id="say" size = "50%"/>
+         <input type="submit" name="submit" id="btn_say" value="send" />
+         <input type="hidden" name="convo_id" id="convo_id" value="<?php echo $convo_id;?>" />
+          <input type="hidden" name="bot_id" id="bot_id" value="<?php echo $bot_id;?>" />
+          <input type="hidden" name="format" id="format" value="<?php echo $format;?>" />
+        </div>
+      </form>
+      
+    </div>
+    </div>
   </body>
  <?php
 }
