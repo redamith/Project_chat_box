@@ -32,48 +32,57 @@
     <meta name="Description" content="copy rights enabled" />
     <meta name="keywords" content="param v-1.0" />
     <style type="text/css">
-      body{
+      /*body{
         height:100%;
         margin: 0;
         padding: 0;
-      }
+      }*/
       #responses {
         
         right:200px;
         bottom:50px;
-        width: 300px;
-        min-width: 400px;
-        height: auto;
+        height: 280px;
+        width:98%;
         min-height: 150px;
         max-height: 500px;
-        overflow: auto;
-        border: 3px inset #666;
+        overflow: hidden;
+        border: 1px inset #666;
         margin-left: auto;
         margin-right: auto;
-        padding: 1px;
-        background-color: #2c3e51;
+        padding: 2px;
+        background-color: #ffffff;
+        
+      }
+      #frame1{
+        position:fixed;
+        right:170px;
+        bottom:-1px;      
+        width: 300px;
+        min-height: 350px
+        max-height: 400px;
+        overflow: hidden;
       }
       #wrapper{
       position:fixed;
         right:170px;
-        bottom:0px;
-        
-        
-        
-        min-width: 150px;
-        max-height: 500px;
-        overflow: auto;
-        border: 3px inset #666;
+        bottom:-1px;      
+        width: 300px;
+        min-height: 350px
+        max-height: 400px;
+        overflow: hidden;
+        border: 1px inset #666;
         margin-left: auto;
         margin-right: auto;
         padding: 5px;
-        background-color: #8db654;
-        z-index: 100;
+        background-color: #2c3e51;
+        border-top-right-radius: 3%;
+        border-top-left-radius: 3%;
       }
       #input {
         
         right:80px;
         bottom:10px;
+
         min-width: 75%;
         
         
@@ -88,8 +97,8 @@
         position:fixed;
         right:90px;
         bottom:0px;
-        width: 20%;
-        min-width: 40px;
+        width: 300px;
+        min-width: 300px;
         
         min-height: 50px;
         max-height: 500px;
@@ -98,43 +107,87 @@
         margin-left: auto;
         margin-right: auto;
         padding: 5px;
-        background-color: #8db654;
-        z-index: 100;
+        background-color: #2c3e51;
+        
+      }
+      .human, .bot_res{
+          display: inline-block;
+    padding-top: 5px;
+    padding-right: 10px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    color: #f5f5f5;
+    background-color: #8db654;
+    white-space: pre-wrap;
+      }
+      #say{
+         border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    outline: none;
+    box-shadow:2px solid #4ddbff opacity:40%;
+    padding-left: 10px;
+
       }
       .shut{
         float: center;
       }
-      a{text-decoration:none;font-size: 100%;color:#8db654 }
+      a{text-decoration:none;font-size: 100%;color: #2c3e51; }
       a:hover{
         color:#2c3e51;
       }
+      .user_input> input
+      {width: 95%;height: 29px;
+      border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+   }
+      .user_input> input:active
+      {
+        box-shadow:2px solid #4ddbff;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+         border-bottom-right-radius: 10px;
+         border-bottom-left-radius: 10px;
+        height: 29px;
+      }
     </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
   </head>
   
-  <?php 
-    if(isset($_GET['login'])&&$_GET['login']==true){
-?>
-    <body onload = "">
-    <iframe src="http://www.grabon.in/" height="775" width="99%"></iframe>
-    <div id = "wrapper" style="">
-      <div id = "top">
-        <p class = "shut" style="text-align:center;color:white">
-          Talk to <a id = "exit" href = "index.php"onclick ="myfunction({window.location = 'index.php';}) " style="color: #2c3e51">Param</a>!
+    <body>
+    
+    <iframe id  = "frame1"src="http://www.grabon.in/" style="position:fixed; top:0px; left:0px; bottom:0px; right:0px; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:0;"></iframe>
+    <!--Add style visiblity hidden for wrapper class-->
+    <div id = "wrapper" style="visibility:hidden;">
+      <a style="cursor:pointer" id = "enter"> 
+      <div>
+        <p style="text-align:center;color:white;height:10px;margin-top:2px;">
+          <b style="font-family:serif;font-size:18px;color:#8db654">Chat with Param!</b><img src="download.png" width="20px" height="20px" style="float:left;">
+
         </p>
-        <hr>
-       </div>
+       </div></a>
     
     <div id = "frame2" style = "">
-    <div id="responses" style="">
-        
-       <?php echo $display ?>
+    <div id="responses" style="color:black;">
+      <?php echo $display; ?>
+
       </div>
-      <form name="chatform" method="post" action="index.php?login=true#end" onsubmit="if(document.getElementById('say').value == '') return false;">
+      <form id="chatform" method="post" action="index.php" onsubmit="if(document.getElementById('say').value == '') return false;">
           <div id="input" style="">
           <label for="say"></label>
-         <hr>
-         <input type="text" name="say" id="say" size = "50%"/>
-         <input type="submit" name="submit" id="btn_say" value="send" />
+         <hr style="color:#8bd651;opacity:0%;">
+         <div class="user_input">
+          <input type="text" name="say" id="say"  size = "99%" placeholder="Hi, I am Param..." style = "font-size:90%;font-family:;"required />
+        </div>
+         
          <input type="hidden" name="convo_id" id="convo_id" value="<?php echo $convo_id;?>" />
           <input type="hidden" name="bot_id" id="bot_id" value="<?php echo $bot_id;?>" />
           <input type="hidden" name="format" id="format" value="<?php echo $format;?>" />
@@ -144,43 +197,49 @@
     </div>
     </div>
   </body>
- <?php
-}
-else{
-?>
-  <script type="text/javascript"
-        src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js">
-          
-  </script>
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
   <script type="text/javascript">
+
 $(document).ready(function(){
-    //If user wants to end session
-    $("#exit").click(function(){
-        {window.location = 'index.php';}      
-    });
-});
-$(document).ready(function(){
+    $('#responses').html('<br>');
+    $("#wrapper").css("visibility","visible");
+    $("div#frame2").hide();
+        $("a#exit").hide();
     //If user wants to end session
     $("#enter").click(function(){
-        var count
-        {window.location = 'index.php?login=true';}      
+        if(($('#frame2').is(':hidden'))){
+        $("div#frame2").show(300);
+        $("a#exit").show(300);
+      }
+      else{
+        $("div#frame2").hide(300);
+        $("a#exit").hide();
+      }
     });
+    
 });
 </script> 
-<iframe src="http://www.grabon.in/" height="765px" width="99%"></iframe>
-<body style="height:100%;">
 
+<script type='text/javascript'>
     
-    <div id = "top1">
-      <p style="text-align:center;">
-         <a id="enter" href="#">Param</a>
-      </p>      
-    </div>
+    $("#chatform").submit(function(event) {
+      event.preventDefault();
+        var sa = $('#say').val();
+        $('#responses').append('<div style="text-align:right;" ><span class = "human">'+sa+"</span>&nbsp;&nbsp;"+"<img src ='user2.jpg' width = '20px' height = '20px'></div><br>");
 
-    
-  </body>
-<?php
-    
-  }
-?>
+       var posting = $.post("index.php",{say : sa, convo_id: $('#convo_id').val(), format: $('#format').val(), bot_id: $('#bot_id').val()});
+      
+      posting.done(function(data){
+          
+          var content = $(data).find(".botsay").html();
+          content = content.substring(6);
+          $("#responses").append('<div class="bot_response" >'+"<img src='icon.png' width='20px' height='20px'>&nbsp;&nbsp;<span class='bot_res'>"+content+"</span></div><br>");
+         $("#responses").animate({ "scrollTop": $('#responses')[0].scrollHeight }, "fast")
+      });
+            $("#responses").animate({ "scrollTop": $('#responses')[0].scrollHeight }, "fast");
+     $("#say").val("");
+  });   
+ 
+</script>
+
 </html>
