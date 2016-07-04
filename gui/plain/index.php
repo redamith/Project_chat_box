@@ -39,7 +39,7 @@
       }*/
       #responses {
         
-        right:200px;
+        right: 0px;
         bottom:50px;
         height: 280px;
         width:98%;
@@ -64,7 +64,7 @@
       }
       #wrapper{
       position:fixed;
-        right:170px;
+        right: 20px;
         bottom:-1px;      
         width: 300px;
         min-height: 350px
@@ -111,27 +111,27 @@
         
       }
       .human, .bot_res{
-          display: inline-block;
-    padding-top: 5px;
-    padding-right: 10px;
-    padding-bottom: 5px;
-    padding-left: 10px;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-    border-bottom-left-radius: 10px;
-    color: #f5f5f5;
-    background-color: #8db654;
-    white-space: pre-wrap;
+        display: inline-block;
+        padding-top: 5px;
+        padding-right: 10px;
+        padding-bottom: 5px;
+        padding-left: 10px;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+        color: #f5f5f5;
+        background-color: #8db654;
+        white-space: pre-wrap;
       }
       #say{
-         border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-    border-bottom-left-radius: 10px;
-    outline: none;
-    box-shadow:2px solid #4ddbff opacity:40%;
-    padding-left: 10px;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+        outline: none;
+        box-shadow:2px solid #4ddbff opacity:40%;
+        padding-left: 10px;
 
       }
       .shut{
@@ -141,20 +141,19 @@
       a:hover{
         color:#2c3e51;
       }
-      .user_input> input
-      {width: 95%;height: 29px;
-      border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-    border-bottom-left-radius: 10px;
-   }
-      .user_input> input:active
-      {
+      .user_input> input{
+        width: 95%;height: 29px;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+      }
+      .user_input> input:active{
         box-shadow:2px solid #4ddbff;
         border-top-left-radius: 10px;
         border-top-right-radius: 10px;
-         border-bottom-right-radius: 10px;
-         border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        border-bottom-left-radius: 10px;
         height: 29px;
       }
     </style>
@@ -164,7 +163,7 @@
   
     <body>
     
-    <iframe id  = "frame1"src="http://www.grabon.in/" style="position:fixed; top:0px; left:0px; bottom:0px; right:0px; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:0;"></iframe>
+    <<iframe id  = "frame1"src="http://www.grabon.in/" style="position:fixed; top:0px; left:0px; bottom:0px; right:0px; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:0;"></iframe>
     <!--Add style visiblity hidden for wrapper class-->
     <div id = "wrapper" style="visibility:hidden;">
       <a style="cursor:pointer" id = "enter"> 
@@ -196,6 +195,7 @@
       
     </div>
     </div>
+    
   </body>
   <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
   <script type="text/javascript">
@@ -225,7 +225,7 @@ $(document).ready(function(){
     $("#chatform").submit(function(event) {
       event.preventDefault();
         var sa = $('#say').val();
-        $('#responses').append('<div style="text-align:right;" ><span class = "human">'+sa+"</span>&nbsp;&nbsp;"+"<img src ='user2.jpg' width = '20px' height = '20px'></div><br>");
+        $('#responses').append('<div style="text-align:right;" ><span class = "human" style="font-family:Calibri;">'+sa+"</span>&nbsp;&nbsp;"+"<img src ='user2.jpg' width = '20px' height = '20px'></div><br>");
 
        var posting = $.post("index.php",{say : sa, convo_id: $('#convo_id').val(), format: $('#format').val(), bot_id: $('#bot_id').val()});
       
@@ -233,7 +233,7 @@ $(document).ready(function(){
           
           var content = $(data).find(".botsay").html();
           content = content.substring(6);
-          $("#responses").append('<div class="bot_response" >'+"<img src='icon.png' width='20px' height='20px'>&nbsp;&nbsp;<span class='bot_res'>"+content+"</span></div><br>");
+          $("#responses").append('<div class="bot_response" >'+"<img src='download.png' width='20px' height='20px'>&nbsp;&nbsp;<span class='bot_res' style='font-family:Calibri'>"+content+"</span></div><br>");
          $("#responses").animate({ "scrollTop": $('#responses')[0].scrollHeight }, "fast")
       });
             $("#responses").animate({ "scrollTop": $('#responses')[0].scrollHeight }, "fast");
